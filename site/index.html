@@ -1,0 +1,1495 @@
+﻿<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>高雄市市立福山國中｜傳染病通報單</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Serif+TC:wght@500;700&family=Noto+Sans+TC:wght@400;500;700&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --bg:#FBF5F8;
+    --surface:#FFFFFF;
+    --surface-soft:#FCEFF5;
+    --ink:#332F3D;
+    --muted:#8A8296;
+    --line:#EAD9E4;
+    --rose-50:#FBEFF4;
+    --rose-200:#F3C9DB;
+    --rose-400:#E39CBE;
+    --rose-500:#D97AA6;
+    --rose-600:#B85686;
+    --sky-50:#EEF6FB;
+    --sky-200:#C7E1F0;
+    --sky-400:#8FC0E1;
+    --sky-500:#5B9BC7;
+    --sky-600:#3E7CA6;
+    --danger:#C24F5C;
+    --radius:14px;
+    --shadow:0 6px 24px rgba(90,60,80,0.08);
+    box-sizing:border-box;
+    padding-top:env(safe-area-inset-top,0px);
+    padding-bottom:env(safe-area-inset-bottom,0px);
+  }
+  *{box-sizing:border-box;}
+  html,body{margin:0;padding:0;background:var(--bg);color:var(--ink);font-family:"Noto Sans TC",sans-serif;}
+  h1,h2,h3{font-family:"Noto Serif TC",serif;font-weight:700;margin:0 0 4px;}
+  body{min-height:100%;}
+  #app{max-width:900px;margin:0 auto;padding:18px 16px 60px;}
+
+  /* ---- header ---- */
+  .topbar{
+    display:flex;align-items:center;justify-content:space-between;gap:12px;
+    padding:16px 20px;background:linear-gradient(120deg,var(--rose-500),var(--sky-500));
+    border-radius:18px;color:#fff;box-shadow:var(--shadow);margin-bottom:18px;
+  }
+  .topbar .brand{display:flex;flex-direction:column;gap:2px;}
+  .topbar .brand small{font-weight:400;opacity:.9;font-size:12.5px;letter-spacing:.02em;}
+  .topbar .brand h1{font-size:19px;color:#fff;}
+  .topbar button.role-btn{
+    background:rgba(255,255,255,.18);border:1px solid rgba(255,255,255,.5);color:#fff;
+    padding:8px 14px;border-radius:999px;font-size:13px;cursor:pointer;white-space:nowrap;
+  }
+  .topbar button.role-btn:hover{background:rgba(255,255,255,.3);}
+
+  /* ---- generic card / section ---- */
+  .card{
+    background:var(--surface);border-radius:var(--radius);box-shadow:var(--shadow);
+    padding:22px 20px;margin-bottom:16px;border:1px solid var(--line);
+  }
+  .section{
+    background:var(--surface);border-radius:var(--radius);
+    border:1px solid var(--line);margin-bottom:14px;overflow:hidden;
+  }
+  .section-head{
+    display:flex;align-items:center;gap:10px;padding:13px 16px;
+    background:var(--rose-50);border-bottom:1px solid var(--line);
+  }
+  .section:nth-of-type(even) .section-head{background:var(--sky-50);}
+  .section-num{
+    flex:none;width:26px;height:26px;border-radius:50%;background:var(--rose-500);
+    color:#fff;font-size:13px;font-weight:700;display:flex;align-items:center;justify-content:center;
+    font-family:"Noto Serif TC",serif;
+  }
+  .section:nth-of-type(even) .section-num{background:var(--sky-600);}
+  .section-head h3{font-size:15.5px;color:var(--ink);}
+  .section-body{padding:16px;display:flex;flex-direction:column;gap:14px;}
+
+  .field{display:flex;flex-direction:column;gap:6px;}
+  .field label{font-size:13px;color:var(--muted);font-weight:500;}
+  .field.required label::after{content:" *";color:var(--rose-600);}
+    input[type=text],input[type=number],input[type=time],input[type=tel],input[type=date],textarea,select{
+    font-family:inherit;font-size:14.5px;padding:9px 11px;border:1px solid var(--line);
+    border-radius:10px;background:#fff;color:var(--ink);width:100%;
+  }
+  input:focus,textarea:focus,select:focus{outline:2px solid var(--sky-400);outline-offset:1px;}
+  textarea{min-height:70px;resize:vertical;}
+  .row{display:flex;gap:10px;flex-wrap:wrap;}
+  .row > *{flex:1 1 140px;}
+    .roc-date{display:flex;align-items:center;gap:6px;flex-wrap:wrap;}
+  .roc-date input{width:66px;flex:none;text-align:center;}
+  .roc-date input[type=date]{width:100%;flex:1 1 160px;text-align:left;}
+  .roc-date span{font-size:13px;color:var(--muted);}
+  .roc-hint{font-size:12px;color:var(--muted);}
+  .md-date{display:flex;align-items:center;gap:6px;flex-wrap:wrap;}
+  .md-date input{width:60px;flex:none;text-align:center;}
+  .md-date select{width:auto;flex:1 1 80px;}
+
+  .choice-group{display:flex;gap:16px;flex-wrap:wrap;}
+  .choice{display:flex;align-items:center;gap:6px;font-size:14px;cursor:pointer;}
+  .choice input{accent-color:var(--rose-500);width:16px;height:16px;}
+
+  .checkbox-grid{display:flex;flex-direction:column;gap:8px;}
+  .checkbox-item{display:flex;align-items:flex-start;gap:8px;font-size:14px;}
+  .checkbox-item input{accent-color:var(--sky-500);width:16px;height:16px;margin-top:2px;}
+  .checkbox-item .sub{margin-left:24px;margin-top:6px;display:none;flex-wrap:wrap;gap:14px;}
+  .checkbox-item.checked .sub{display:flex;}
+
+  .subgroup{
+    display:none;margin-left:2px;padding:12px;border-left:3px solid var(--sky-200);
+    background:var(--sky-50);border-radius:0 10px 10px 0;flex-direction:column;gap:12px;
+  }
+  .subgroup.show{display:flex;}
+
+  .family-row{display:grid;grid-template-columns:1fr 1fr 1.3fr 0.8fr 0.6fr;gap:8px;align-items:end;}
+  .family-row label{font-size:12px;color:var(--muted);}
+  @media (max-width:640px){.family-row{grid-template-columns:1fr 1fr;}}
+
+  .hint{font-size:12px;color:var(--muted);line-height:1.5;}
+
+  /* ---- buttons ---- */
+  .btn{
+    border:none;border-radius:999px;padding:11px 22px;font-size:14.5px;font-weight:700;
+    cursor:pointer;font-family:"Noto Sans TC",sans-serif;transition:transform .08s ease;
+  }
+  .btn:active{transform:scale(.97);}
+  .btn-primary{background:var(--rose-500);color:#fff;}
+  .btn-primary:hover{background:var(--rose-600);}
+  .btn-secondary{background:var(--sky-500);color:#fff;}
+  .btn-secondary:hover{background:var(--sky-600);}
+  .btn-ghost{background:transparent;color:var(--rose-600);border:1.5px solid var(--rose-300,var(--rose-400));}
+  .btn-danger{background:#fff;color:var(--danger);border:1.5px solid var(--danger);}
+  .btn-block{width:100%;}
+  .btn-row{display:flex;gap:10px;flex-wrap:wrap;margin-top:6px;}
+  .btn[disabled]{opacity:.55;cursor:not-allowed;}
+
+  /* ---- home screen ---- */
+  .home-grid{display:grid;grid-template-columns:1fr 1fr;gap:14px;}
+  @media (max-width:560px){.home-grid{grid-template-columns:1fr;}}
+  .role-card{
+    background:var(--surface);border-radius:18px;padding:26px 20px;text-align:center;
+    box-shadow:var(--shadow);border:1px solid var(--line);cursor:pointer;
+  }
+  .role-card .icon{font-size:34px;margin-bottom:10px;}
+  .role-card h2{font-size:17px;margin-bottom:6px;}
+  .role-card p{font-size:13px;color:var(--muted);margin:0 0 14px;line-height:1.6;}
+  .role-card.parent{border-top:4px solid var(--rose-400);}
+  .role-card.teacher{border-top:4px solid var(--sky-500);}
+
+  /* ---- notices ---- */
+  .notice{padding:11px 14px;border-radius:10px;font-size:13.5px;margin-bottom:12px;line-height:1.6;}
+  .notice.info{background:var(--sky-50);color:#2C5A76;border:1px solid var(--sky-200);}
+  .notice.success{background:#EAF7EF;color:#256B45;border:1px solid #C6E9D3;}
+  .notice.error{background:#FBEBEC;color:#9C3541;border:1px solid #F1C4C8;}
+
+  /* ---- teacher list ---- */
+  .search-bar{display:flex;gap:8px;margin-bottom:12px;}
+  .search-bar input{flex:1;}
+  .report-list{display:flex;flex-direction:column;gap:10px;}
+  .report-row{
+    display:flex;align-items:center;justify-content:space-between;gap:10px;
+    padding:12px 14px;background:#fff;border:1px solid var(--line);border-radius:12px;flex-wrap:wrap;
+  }
+  .report-row .who{display:flex;flex-direction:column;gap:2px;}
+  .report-row .who b{font-size:14.5px;}
+  .report-row .who span{font-size:12px;color:var(--muted);}
+  .report-row .actions{display:flex;gap:6px;flex-wrap:wrap;}
+  .report-row .actions button{padding:7px 12px;font-size:12.5px;border-radius:999px;}
+
+  .empty-state{text-align:center;padding:40px 20px;color:var(--muted);font-size:14px;}
+
+  .back-link{background:none;border:none;color:var(--muted);font-size:13.5px;cursor:pointer;padding:4px 0;margin-bottom:8px;display:inline-flex;align-items:center;gap:4px;}
+  .back-link:hover{color:var(--ink);}
+
+  footer{text-align:center;color:var(--muted);font-size:12px;margin-top:26px;line-height:1.8;}
+  footer a{color:var(--rose-600);text-decoration:none;}
+
+  .modal-backdrop{
+    position:fixed;inset:0;background:rgba(50,30,45,.35);display:none;align-items:center;justify-content:center;
+    padding:20px;z-index:50;
+  }
+  .modal-backdrop.show{display:flex;}
+  .modal{background:#fff;border-radius:16px;max-width:380px;width:100%;padding:22px;box-shadow:var(--shadow);}
+  .modal h3{margin-bottom:10px;}
+  .modal p{font-size:13.5px;color:var(--muted);line-height:1.6;margin:0 0 14px;}
+
+    /* ---- 列印：對照學校紙本通報單（A4 直式一頁 1:1） ---- */
+  #printRoot{display:none;}
+  #printRoot .paper{font-family:"Noto Serif TC","Noto Sans TC",serif;color:#000;}
+  #printRoot .paper-title{text-align:center;font-size:19px;font-weight:700;letter-spacing:.06em;margin:0 0 3px;}
+  #printRoot .paper-title .ver{font-size:9px;font-weight:400;letter-spacing:0;white-space:nowrap;}
+  #printRoot .paper-proc{font-size:9.5px;line-height:1.65;margin:0 0 5px;}
+  #printRoot table.paper-table{width:100%;border-collapse:collapse;font-size:10.5px;line-height:1.6;}
+  #printRoot table.paper-table td{border:1px solid #000;padding:2px 5px;vertical-align:top;text-align:left;word-break:break-all;overflow-wrap:anywhere;}
+  #printRoot td.pnum{width:24px;text-align:center;font-weight:700;}
+  #printRoot td.psec{width:66px;text-align:center;font-weight:700;}
+  /* 格內均分（不影響整張表的欄寬）：左右兩半各 50%，中間以框線分隔 */
+  #printRoot .half-row{display:flex;}
+  #printRoot .half-row>div{flex:1 1 0;min-width:0;}
+  #printRoot .half-row>div:first-child{padding-right:6px;}
+  #printRoot .half-row>div+div{border-left:1px solid #000;padding-left:6px;}
+  #printRoot .fill{display:inline-block;min-width:4em;border-bottom:1px solid #000;text-align:center;padding:0 3px;font-weight:700;}
+  #printRoot .fill.short{min-width:1.6em;}
+  #printRoot .fill.mid{min-width:2.6em;}
+  #printRoot .fill.wide{min-width:9em;}
+  #printRoot .paper-note{font-size:9.5px;line-height:1.65;margin:4px 0 0;}
+  @media print{
+    @page{size:A4 portrait;margin:7mm 8mm 8mm 8mm;}
+    body{background:#fff;}
+    #app,.modal-backdrop{display:none !important;}
+    #printRoot{display:block !important;position:static;width:auto;margin:0;padding:0;}
+  }
+</style>
+</head>
+<body>
+<div id="app">
+
+    <div class="topbar">
+    <div class="brand">
+      <small id="siteSchoolName">高雄市市立福山國中</small>
+      <h1 id="siteTitleH1">傳染病通報單線上系統</h1>
+    </div>
+    <button class="role-btn" id="homeBtn" onclick="goHome()">回首頁</button>
+  </div>
+
+  <div id="setupNotice"></div>
+  <div id="screen"></div>
+
+    <footer>
+    <span id="siteFooterName">高雄市市立福山國中傳染病通報單線上系統</span>｜本表單資料涉及個人健康資訊，請妥善保管查詢入口<br>
+    程式設計：<a href="https://www.facebook.com/profile.php?id=61590607147918" target="_blank" rel="noopener">3C不正師</a>
+  </footer>
+</div>
+
+<div id="printRoot"></div>
+
+<div class="modal-backdrop" id="confirmModal">
+  <div class="modal">
+    <h3 id="confirmTitle">確認</h3>
+    <p id="confirmBody"></p>
+    <div class="btn-row">
+      <button class="btn btn-ghost" onclick="closeConfirm()">取消</button>
+      <button class="btn btn-danger" id="confirmYesBtn">確定</button>
+    </div>
+  </div>
+</div>
+
+<script>
+/* =========================================================================
+   本站版：前端由同一 Apps Script 專案直接提供，經 google.script.run
+   呼叫後端，不需設定任何網址。
+   ========================================================================= */
+
+/* ============================= 共用小工具 ============================= */
+function $(sel, root){ return (root||document).querySelector(sel); }
+function $all(sel, root){ return Array.from((root||document).querySelectorAll(sel)); }
+function el(tag, attrs, children){
+  const e = document.createElement(tag);
+  if(attrs) for(const k in attrs){
+    if(k==='html') e.innerHTML = attrs[k];
+    else if(k==='text') e.textContent = attrs[k];
+    else e.setAttribute(k, attrs[k]);
+  }
+  (children||[]).forEach(c=> e.appendChild(c));
+  return e;
+}
+function esc(s){ return (s===undefined||s===null) ? '' : String(s).replace(/[&<>"']/g, c=>({ '&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;' }[c])); }
+
+/* 伺服器/連線錯誤訊息：把 google.script.run 的真實錯誤顯示出來，方便除錯 */
+function serverErrMsg(e, fallback){
+  const detail = (e && e.message) ? String(e.message) : '';
+  if(detail) return `${fallback||'連線失敗'}（${detail}）`;
+  return fallback || '連線失敗，請確認網路連線或稍後再試。';
+}
+
+function callApi(action, payload){
+  const fnMap = {
+    submitOrUpdate: 'apiSubmitOrUpdate',
+    getByIdNumber: 'apiGetByIdNumber',
+    teacherLogin: 'apiTeacherLogin',
+    listAll: 'apiListAll',
+    teacherUpdate: 'apiTeacherUpdate',
+    teacherDelete: 'apiTeacherDelete',
+    getByRowId: 'apiGetByRowId',
+    getPublicSettings: 'apiGetPublicSettings',
+    getAdminSettings: 'apiGetAdminSettings',
+    updateSiteSettings: 'apiUpdateSiteSettings',
+    changePassword: 'apiChangePassword'
+  };
+  return new Promise(function(resolve, reject){
+    try{
+      google.script.run
+        .withSuccessHandler(function(resp){
+          if(resp === null || resp === undefined){
+            reject(new Error('後端回傳空值，請確認 Apps Script 已用「新版本」部署（Code.gs 與 index.html 皆為最新）'));
+          } else {
+            resolve(resp);
+          }
+        })
+        .withFailureHandler(function(err){ reject(err); })
+        [fnMap[action]](payload);
+    }catch(e){ reject(e); }
+  });
+}
+
+function showConfirm(title, body, onYes){
+  $('#confirmTitle').textContent = title;
+  $('#confirmBody').textContent = body;
+  $('#confirmModal').classList.add('show');
+  const btn = $('#confirmYesBtn');
+  const clone = btn.cloneNode(true);
+  btn.parentNode.replaceChild(clone, btn);
+  clone.addEventListener('click', ()=>{ closeConfirm(); onYes(); });
+}
+function closeConfirm(){ $('#confirmModal').classList.remove('show'); }
+
+/* ============================= 狀態 ============================= */
+let teacherToken = null;
+let teacherMustChangePw = false;
+let siteSettings = { schoolName: '高雄市市立福山國中', siteTitle: '傳染病通報單線上系統' };
+let currentEditContext = null; // 'parent' | 'teacher'
+let currentEditRowId = null;   // 教師編修時的 rowId
+let cachedTeacherRecords = []; // 輕量摘要清單（rowId／姓名／班級／更新時間）
+let teacherFullCache = {};     // rowId → 完整紀錄（含表單 data），查看／列印時按需取得
+
+/* ============================= 網站標題（公開設定） ============================= */
+function applySiteSettings(s){
+  if(!s) return;
+  siteSettings.schoolName = s.schoolName || siteSettings.schoolName;
+  siteSettings.siteTitle = s.siteTitle || siteSettings.siteTitle;
+  const small = $('#siteSchoolName');
+  const h1 = $('#siteTitleH1');
+  if(small) small.textContent = siteSettings.schoolName;
+  if(h1) h1.textContent = siteSettings.siteTitle;
+  document.title = siteSettings.schoolName + '｜' + siteSettings.siteTitle;
+  const foot = $('#siteFooterName');
+  if(foot) foot.textContent = siteSettings.schoolName + siteSettings.siteTitle;
+}
+async function loadPublicSettings(){
+  try{
+    const resp = await callApi('getPublicSettings', {});
+    if(resp && resp.success) applySiteSettings(resp);
+  }catch(e){ /* 離線則沿用預設標題 */ }
+}
+
+/* ============================= 表單欄位定義（供症狀 / 診斷等重複性群組使用） ============================= */
+const DIAGNOSIS_OPTIONS = [
+  {v:'flu_like', label:'類流感'},
+  {v:'dengue', label:'登革熱'},
+  {v:'enterovirus', label:'腸病毒'},
+  {v:'mumps', label:'腮腺炎'},
+  {v:'chickenpox', label:'水痘'},
+  {v:'viral_gastro', label:'病毒性腸胃炎（諾羅、輪狀病毒等）'},
+  {v:'pink_eye', label:'紅眼症'},
+];
+const SYMPTOM_OPTIONS = [
+  {v:'fever', label:'發燒'}, {v:'cough', label:'咳嗽'}, {v:'myalgia', label:'肌肉酸痛'},
+  {v:'headache', label:'頭痛'}, {v:'dizziness', label:'頭暈'}, {v:'sore_throat', label:'喉嚨痛'},
+  {v:'diarrhea', label:'腹瀉'}, {v:'abdominal_pain', label:'腹痛'}, {v:'smell_loss', label:'嗅覺異常'},
+  {v:'taste_loss', label:'味覺異常'}, {v:'conjunctivitis', label:'結膜炎'},
+];
+const FAMILY_DISEASE_OPTIONS = [
+  {v:'covid19', label:'新冠'}, {v:'flu_a', label:'A流'}, {v:'flu_b', label:'B流'},
+  {v:'dengue', label:'登革熱'}, {v:'enterovirus', label:'腸病毒'}, {v:'mumps', label:'腮腺炎'},
+  {v:'chickenpox', label:'水痘'},
+];
+
+/* ============================= 表單 HTML ============================= */
+/* ============================= 日期點選小工具 =============================
+   民國日期欄：顯示一個 date picker（西元點選），自動換算存入既有
+   data-f="key_y / key_m / key_d"（key_y 為民國年），與舊資料完全相容。
+   月日欄：改用下拉選單點選。時間欄原本即為 type=time 點選，維持不變。 */
+function rocToDateValue(rocY, m, d){
+  const y = parseInt(rocY, 10), mo = parseInt(m, 10), da = parseInt(d, 10);
+  if(!y || !mo || !da) return '';
+  const gy = y + 1911;
+  const p = n=>String(n).padStart(2,'0');
+  if(mo < 1 || mo > 12 || da < 1 || da > 31) return '';
+  return `${gy}-${p(mo)}-${p(da)}`;
+}
+function dateValueToRoc(dateStr){
+  if(!dateStr) return null;
+  const parts = String(dateStr).split('-');
+  if(parts.length !== 3) return null;
+  const gy = parseInt(parts[0], 10), mo = parseInt(parts[1], 10), da = parseInt(parts[2], 10);
+  if(!gy || !mo || !da) return null;
+  return { y: String(gy - 1911), m: String(mo), d: String(da) };
+}
+function rocDateField(key, label, required){
+  return `
+  <div class="field${required?' required':''}">
+    <label>${label}（點選日期，自動換算民國）</label>
+    <div class="roc-date">
+      <input type="date" data-picker="${key}" aria-label="${label}">
+    </div>
+    <div class="roc-hint" data-rochit="${key}"></div>
+    <input type="hidden" data-f="${key}_y">
+    <input type="hidden" data-f="${key}_m">
+    <input type="hidden" data-f="${key}_d">
+  </div>`;
+}
+function mdOptions(from, to, pad){
+  let s = `<option value="">--</option>`;
+  for(let i = from; i <= to; i++){
+    const v = pad ? String(i).padStart(2,'0') : String(i);
+    s += `<option value="${i}">${v}</option>`;
+  }
+  return s;
+}
+function mdField(key, label){
+  return `
+  <div class="field">
+    <label>${label}（點選）</label>
+    <div class="md-date">
+      <select data-f="${key}_m" aria-label="${label}月">${mdOptions(1,12,true)}</select>
+      <span>月</span>
+      <select data-f="${key}_d" aria-label="${label}日">${mdOptions(1,31,true)}</select>
+      <span>日</span>
+    </div>
+  </div>`;
+}
+function syncRocHint(root, key){
+  const y = (root.querySelector(`input[data-f="${key}_y"]`)||{}).value;
+  const m = (root.querySelector(`input[data-f="${key}_m"]`)||{}).value;
+  const d = (root.querySelector(`input[data-f="${key}_d"]`)||{}).value;
+  const hint = root.querySelector(`[data-rochit="${key}"]`);
+  if(hint) hint.textContent = (y && m && d) ? `民國 ${y} 年 ${m} 月 ${d} 日` : '';
+}
+function syncAllDatePickers(root, fromPickerKey){
+  root = root || document;
+  $all('input[data-picker]', root).forEach(pk=>{
+    const key = pk.getAttribute('data-picker');
+    if(fromPickerKey && key !== fromPickerKey) return;
+    // 若剛從 picker 觸發：picker → hidden
+    if(fromPickerKey){
+      const roc = dateValueToRoc(pk.value);
+      const yEl = root.querySelector(`input[data-f="${key}_y"]`);
+      const mEl = root.querySelector(`input[data-f="${key}_m"]`);
+      const dEl = root.querySelector(`input[data-f="${key}_d"]`);
+      if(roc){ yEl.value = roc.y; mEl.value = roc.m; dEl.value = roc.d; }
+      else { yEl.value = ''; mEl.value = ''; dEl.value = ''; }
+    } else {
+      // 資料帶入時：hidden → picker
+      const y = (root.querySelector(`input[data-f="${key}_y"]`)||{}).value;
+      const m = (root.querySelector(`input[data-f="${key}_m"]`)||{}).value;
+      const d = (root.querySelector(`input[data-f="${key}_d"]`)||{}).value;
+      pk.value = rocToDateValue(y, m, d);
+    }
+    syncRocHint(root, key);
+  });
+}
+
+function buildFormHTML(role){
+  role = role || 'teacher'; // 'parent' | 'teacher'
+  const section12 = (role === 'parent')
+    ? `
+  <div class="section">
+    <div class="section-head"><div class="section-num">12</div><h3>簽名與通報時間</h3></div>
+    <div class="section-body">
+      <div class="notice info" style="margin:0;">本欄由填報老師填寫，家長不需填寫。老師收到通報後會補上簽名與通報時間。</div>
+    </div>
+  </div>`
+    : `
+  <div class="section">
+    <div class="section-head"><div class="section-num">12</div><h3>簽名與通報時間（老師填寫）</h3></div>
+    <div class="section-body">
+      <div class="field"><label>導師或填表人簽名</label><input type="text" data-f="signer"></div>
+      <div class="row">
+        ${rocDateField('parent_report','家長通報日期')}
+        <div class="field"><label>家長通報時間（點選）</label><input type="time" data-f="parent_report_time"></div>
+      </div>
+      <div class="row">
+        ${rocDateField('teacher_report','導師通報日期')}
+        <div class="field"><label>導師通報時間（點選）</label><input type="time" data-f="teacher_report_time"></div>
+      </div>
+    </div>
+  </div>`;
+  return `
+  <div class="section">
+    <div class="section-head"><div class="section-num">•</div><h3>基本資料</h3></div>
+    <div class="section-body">
+      <div class="row">
+        <div class="field required"><label>姓名</label><input type="text" data-f="name"></div>
+        <div class="field">
+          <label>性別</label>
+          <div class="choice-group">
+            <label class="choice"><input type="radio" name="gender" data-f="gender" value="男"> 男</label>
+            <label class="choice"><input type="radio" name="gender" data-f="gender" value="女"> 女</label>
+          </div>
+        </div>
+      </div>
+      <div class="row">
+        <div class="field required"><label>身分證字號</label><input type="text" data-f="idNumber" placeholder="請輸入身分證字號" maxlength="10"></div>
+        <div class="field">
+          <label>身分</label>
+          <div class="choice-group">
+            <label class="choice"><input type="radio" name="identity" data-f="identity" value="學生"> 學生</label>
+            <label class="choice"><input type="radio" name="identity" data-f="identity" value="教職員工"> 教職員工</label>
+          </div>
+        </div>
+      </div>
+      <div class="subgroup" id="sub_identityOffice">
+        <div class="field"><label>處室</label><input type="text" data-f="identityOffice"></div>
+      </div>
+      ${rocDateField('birth','出生日期')}
+      <div class="row">
+        <div class="field"><label>班級</label><input type="text" data-f="classNumber" placeholder="例：701"></div>
+        <div class="field"><label>座號</label><input type="text" data-f="seatNumber"></div>
+        <div class="field"><label>班級總人數</label><input type="text" data-f="classTotal"></div>
+      </div>
+      <div class="row">
+        <div class="field"><label>電話</label><input type="tel" data-f="phone"></div>
+        <div class="field" style="flex:2 1 260px;"><label>住址</label><input type="text" data-f="address"></div>
+      </div>
+    </div>
+  </div>
+
+  <div class="section">
+    <div class="section-head"><div class="section-num">1</div><h3>就醫情形</h3></div>
+    <div class="section-body">
+      <div class="field"><label>診斷</label>
+        <div class="checkbox-grid" id="diagnosisGrid">
+          <label class="checkbox-item" data-item="covid19">
+            <input type="checkbox" data-f="diagnosis" value="covid19"> 新冠肺炎
+          </label>
+          <div class="sub" id="sub_covid19">
+            <label class="choice"><input type="radio" name="covidType" data-f="covid_type" value="self_rapid"> 自行快篩陽性</label>
+            <label class="choice"><input type="radio" name="covidType" data-f="covid_type" value="doctor_rapid"> 醫師快篩診斷陽性</label>
+          </div>
+
+          <label class="checkbox-item" data-item="flu">
+            <input type="checkbox" data-f="diagnosis" value="flu"> A型流感 或 B型流感
+          </label>
+          <div class="sub" id="sub_flu" style="flex-direction:column;gap:8px;">
+            <div class="choice-group">
+              <label class="choice"><input type="radio" name="fluStrain" data-f="flu_strain" value="A"> A型</label>
+              <label class="choice"><input type="radio" name="fluStrain" data-f="flu_strain" value="B"> B型</label>
+            </div>
+            <div class="choice-group">
+              <label class="choice"><input type="radio" name="fluConfirm" data-f="flu_confirm" value="tested"> 醫師篩檢確診</label>
+              <label class="choice"><input type="radio" name="fluConfirm" data-f="flu_confirm" value="clinical"> 醫師未篩判斷確診</label>
+            </div>
+          </div>
+
+          ${DIAGNOSIS_OPTIONS.map(o=>`<label class="checkbox-item"><input type="checkbox" data-f="diagnosis" value="${o.v}"> ${o.label}</label>`).join('')}
+
+          <label class="checkbox-item"><input type="checkbox" data-f="diagnosis" value="other"> 其他</label>
+        </div>
+        <input type="text" data-f="diagnosis_other" placeholder="請說明其他診斷內容" style="margin-top:6px;">
+      </div>
+
+      ${rocDateField('confirm','確診日期')}
+      <div class="field"><label>確診時段</label>
+        <div class="choice-group">
+          <label class="choice"><input type="radio" name="confirmTod" data-f="confirm_tod" value="早上"> 早上</label>
+          <label class="choice"><input type="radio" name="confirmTod" data-f="confirm_tod" value="下午"> 下午</label>
+          <label class="choice"><input type="radio" name="confirmTod" data-f="confirm_tod" value="晚上"> 晚上</label>
+        </div>
+      </div>
+
+      ${rocDateField('onset','發病日期')}
+      <div class="field"><label>過去病史</label><input type="text" data-f="past_history"></div>
+
+      <div class="row">
+        ${rocDateField('visit1','就醫日期(1)')}
+        <div class="field"><label>醫療院所(1)</label><input type="text" data-f="visit1_hospital"></div>
+      </div>
+      <div class="row">
+        ${rocDateField('visit2','就醫日期(2)')}
+        <div class="field"><label>醫療院所(2)</label><input type="text" data-f="visit2_hospital"></div>
+      </div>
+    </div>
+  </div>
+
+  <div class="section">
+    <div class="section-head"><div class="section-num">2</div><h3>診治情形</h3></div>
+    <div class="section-body">
+      <div class="field"><label>投藥</label>
+        <div class="checkbox-grid">
+          <label class="checkbox-item" data-item="med_covid">
+            <input type="checkbox" data-f="med" value="covid"> 服用新冠肺炎抗病毒藥劑
+          </label>
+          <div class="sub" id="sub_med_covid">
+            <label class="choice"><input type="radio" name="fundCovid" data-f="fund_covid" value="公費"> 公費</label>
+            <label class="choice"><input type="radio" name="fundCovid" data-f="fund_covid" value="自費"> 自費</label>
+          </div>
+          <label class="checkbox-item" data-item="med_flu">
+            <input type="checkbox" data-f="med" value="flu"> 服用流感抗病毒藥劑（如克流感）
+          </label>
+          <div class="sub" id="sub_med_flu">
+            <label class="choice"><input type="radio" name="fundFlu" data-f="fund_flu" value="公費"> 公費</label>
+            <label class="choice"><input type="radio" name="fundFlu" data-f="fund_flu" value="自費"> 自費</label>
+          </div>
+          <label class="checkbox-item"><input type="checkbox" data-f="med" value="symptomatic"> 症狀治療藥物</label>
+        </div>
+        <input type="text" data-f="med_other" placeholder="其他藥物" style="margin-top:6px;">
+      </div>
+      <div class="field"><label>療養</label>
+        <div class="choice-group">
+          <label class="choice"><input type="radio" name="careType" data-f="care_type" value="居家"> 居家</label>
+          <label class="choice"><input type="radio" name="careType" data-f="care_type" value="住院醫療"> 住院醫療</label>
+        </div>
+      </div>
+      <div class="subgroup" id="sub_care_hospital">
+        <div class="field"><label>住院醫院</label><input type="text" data-f="care_hospital"></div>
+      </div>
+    </div>
+  </div>
+
+  <div class="section">
+    <div class="section-head"><div class="section-num">3</div><h3>就讀補習班、安親班</h3></div>
+    <div class="section-body">
+      <div class="field">
+        <div class="choice-group">
+          <label class="choice"><input type="radio" name="cramAttend" data-f="cram_attend" value="否"> 否</label>
+          <label class="choice"><input type="radio" name="cramAttend" data-f="cram_attend" value="是"> 是</label>
+        </div>
+      </div>
+      <div class="subgroup" id="sub_cram">
+        <div class="row">
+          <div class="field"><label>區</label><input type="text" data-f="cram_area"></div>
+          <div class="field" style="flex:2 1 200px;"><label>機構名稱</label><input type="text" data-f="cram_name"></div>
+        </div>
+        <div class="field"><label>上課科別</label><input type="text" data-f="cram_subject"></div>
+        <div class="field"><label>時間</label>
+          <div class="choice-group">
+            <label class="choice"><input type="radio" name="cramFreq" data-f="cram_freq" value="每天"> 每天</label>
+            <label class="choice"><input type="radio" name="cramFreq" data-f="cram_freq" value="每週星期幾"> 每週星期幾</label>
+          </div>
+        </div>
+        <input type="text" data-f="cram_days" placeholder="例：一、三、五">
+      </div>
+    </div>
+  </div>
+
+  <div class="section">
+    <div class="section-head"><div class="section-num">4</div><h3>參加學校社團名稱</h3></div>
+    <div class="section-body">
+      <div class="field"><input type="text" data-f="club_name"></div>
+    </div>
+  </div>
+
+  <div class="section">
+    <div class="section-head"><div class="section-num">5</div><h3>同住家人是否有其他病例？</h3></div>
+    <div class="section-body">
+      <div class="field">
+        <div class="choice-group">
+          <label class="choice"><input type="radio" name="familyCase" data-f="family_case" value="否"> 否</label>
+          <label class="choice"><input type="radio" name="familyCase" data-f="family_case" value="是"> 是</label>
+        </div>
+      </div>
+      <div class="subgroup" id="sub_family">
+        <div class="row">
+          <div class="field"><label>與個案關係</label><input type="text" data-f="family_relation"></div>
+          <div class="field"><label>確診總人數</label><input type="number" min="0" data-f="family_confirmed_count"></div>
+        </div>
+        <div class="field"><label>確診疾病</label>
+          <div class="checkbox-grid" style="flex-direction:row;flex-wrap:wrap;gap:12px;">
+            ${FAMILY_DISEASE_OPTIONS.map(o=>`<label class="checkbox-item"><input type="checkbox" data-f="family_disease" value="${o.v}"> ${o.label}</label>`).join('')}
+            <label class="checkbox-item"><input type="checkbox" data-f="family_disease" value="other"> 其他</label>
+          </div>
+          <input type="text" data-f="family_disease_other" placeholder="其他疾病說明" style="margin-top:6px;">
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="section">
+    <div class="section-head"><div class="section-num">6</div><h3>同住家人就學中資料（無則免填）</h3></div>
+    <div class="section-body">
+      ${[1,2,3].map(i=>`
+      <div class="family-row">
+        <div><label>關係</label><input type="text" data-f="fam${i}_relation"></div>
+        <div><label>姓名</label><input type="text" data-f="fam${i}_name"></div>
+        <div><label>學校</label><input type="text" data-f="fam${i}_school"></div>
+        <div><label>年級</label><input type="text" data-f="fam${i}_year" placeholder="年"></div>
+        <div><label>班級</label><input type="text" data-f="fam${i}_class" placeholder="班"></div>
+      </div>`).join('')}
+    </div>
+  </div>
+
+  <div class="section">
+    <div class="section-head"><div class="section-num">7</div><h3>二週內是否出國？</h3></div>
+    <div class="section-body">
+      <div class="field">
+        <div class="choice-group">
+          <label class="choice"><input type="radio" name="abroad" data-f="abroad" value="否"> 否</label>
+          <label class="choice"><input type="radio" name="abroad" data-f="abroad" value="是"> 是</label>
+        </div>
+      </div>
+      <div class="subgroup" id="sub_abroad">
+        <div class="row">
+          ${mdField('abroad_start','出發時間')}
+          ${mdField('abroad_end','返回時間')}
+        </div>
+        <div class="field"><label>地點</label><input type="text" data-f="abroad_location"></div>
+      </div>
+    </div>
+  </div>
+
+  <div class="section">
+    <div class="section-head"><div class="section-num">8</div><h3>發病症狀</h3></div>
+    <div class="section-body">
+      <div class="checkbox-grid" style="flex-direction:row;flex-wrap:wrap;gap:12px;">
+        ${SYMPTOM_OPTIONS.map(o=>`<label class="checkbox-item"><input type="checkbox" data-f="symptoms" value="${o.v}"> ${o.label}</label>`).join('')}
+        <label class="checkbox-item"><input type="checkbox" data-f="symptoms" value="other"> 其他</label>
+      </div>
+      <input type="text" data-f="symptoms_other" placeholder="其他症狀說明" style="margin-top:6px;">
+    </div>
+  </div>
+
+  <div class="section">
+    <div class="section-head"><div class="section-num">9</div><h3>疫苗接種</h3></div>
+    <div class="section-body">
+      <div class="field"><label>近一年內是否打過流感疫苗？</label>
+        <div class="choice-group">
+          <label class="choice"><input type="radio" name="fluVax" data-f="flu_vaccine" value="否"> 否</label>
+          <label class="choice"><input type="radio" name="fluVax" data-f="flu_vaccine" value="是"> 是</label>
+        </div>
+      </div>
+      <div class="subgroup" id="sub_flu_vax">${rocDateField('flu_vaccine','接種日期')}</div>
+
+      <div class="field"><label>近一年內是否打過新冠肺炎疫苗？</label>
+        <div class="choice-group">
+          <label class="choice"><input type="radio" name="covidVax" data-f="covid_vaccine" value="否"> 否</label>
+          <label class="choice"><input type="radio" name="covidVax" data-f="covid_vaccine" value="是"> 是</label>
+        </div>
+      </div>
+      <div class="subgroup" id="sub_covid_vax">${rocDateField('covid_vaccine','接種日期')}</div>
+    </div>
+  </div>
+
+  <div class="section">
+    <div class="section-head"><div class="section-num">10</div><h3>到校情形 / 請假</h3></div>
+    <div class="section-body">
+      <label class="checkbox-item"><input type="checkbox" data-f="sent_home" value="1"> 到校後發病、發燒或不適，由家屬帶回就醫</label>
+      <div class="subgroup" id="sub_sent_home">
+        <div class="row">
+          ${mdField('sent_home','帶回時間')}
+          <div class="field"><label>第幾節帶回</label><input type="text" data-f="sent_home_period"></div>
+        </div>
+      </div>
+      <label class="checkbox-item"><input type="checkbox" data-f="leave_home" value="1"> 發病後就請假在家未到校</label>
+      <div class="subgroup" id="sub_leave_home">
+        ${mdField('leave_start','開始請假日期')}
+      </div>
+    </div>
+  </div>
+
+  <div class="section">
+    <div class="section-head"><div class="section-num">11</div><h3>是否已領取午餐退費申請表</h3></div>
+    <div class="section-body">
+      <div class="choice-group">
+        <label class="choice"><input type="radio" name="lunchRefund" data-f="lunch_refund" value="是"> 是</label>
+        <label class="choice"><input type="radio" name="lunchRefund" data-f="lunch_refund" value="否"> 否</label>
+      </div>
+    </div>
+  </div>
+
+  ${section12}
+
+  <div class="section">
+    <div class="section-head"><div class="section-num">•</div><h3>備註</h3></div>
+    <div class="section-body">
+      <textarea data-f="notes" placeholder="其他需補充說明事項"></textarea>
+    </div>
+  </div>
+  `;
+}
+
+/* ============================= 表單資料收集 / 帶入 ============================= */
+function collectFormData(root){
+  const data = {};
+  // 一般文字/數字/時間/textarea/select（不含 radio、checkbox）
+  $all('input[data-f], textarea[data-f], select[data-f]', root).forEach(input=>{
+    const key = input.getAttribute('data-f');
+    if(input.type === 'checkbox'){
+      if(!data[key]) data[key] = [];
+      if(input.checked) data[key].push(input.value);
+    } else if(input.type === 'radio'){
+      if(input.checked) data[key] = input.value;
+    } else {
+      data[key] = input.value;
+    }
+  });
+  return data;
+}
+
+function populateFormData(root, data){
+  if(!data) data = {};
+  $all('input[data-f], textarea[data-f], select[data-f]', root).forEach(input=>{
+    const key = input.getAttribute('data-f');
+    const val = data[key];
+    if(input.type === 'checkbox'){
+      const arr = Array.isArray(val) ? val : [];
+      input.checked = arr.includes(input.value);
+    } else if(input.type === 'radio'){
+      input.checked = (val === input.value);
+    } else {
+      input.value = (val===undefined || val===null) ? '' : val;
+    }
+  });
+  syncAllDatePickers(root);
+  updateConditionals(root);
+}
+
+function updateConditionals(root){
+  root = root || document;
+  const identity = (root.querySelector('input[name=identity]:checked')||{}).value;
+  toggleSub(root,'sub_identityOffice', identity === '教職員工');
+
+  const diagnosisChecks = $all('input[data-f=diagnosis]', root);
+  diagnosisChecks.forEach(cb=>{
+    const item = cb.closest('.checkbox-item');
+    if(item) item.classList.toggle('checked', cb.checked);
+  });
+  const covidChecked = diagnosisChecks.some(cb=>cb.value==='covid19' && cb.checked);
+  toggleSub(root,'sub_covid19', covidChecked, true);
+  const fluChecked = diagnosisChecks.some(cb=>cb.value==='flu' && cb.checked);
+  toggleSub(root,'sub_flu', fluChecked, true);
+
+  const careType = (root.querySelector('input[name=careType]:checked')||{}).value;
+  toggleSub(root,'sub_care_hospital', careType === '住院醫療');
+
+  const medCovid = root.querySelector('input[data-f=med][value=covid]');
+  toggleSub(root,'sub_med_covid', !!(medCovid&&medCovid.checked), true);
+  const medFlu = root.querySelector('input[data-f=med][value=flu]');
+  toggleSub(root,'sub_med_flu', !!(medFlu&&medFlu.checked), true);
+
+  const cramAttend = (root.querySelector('input[name=cramAttend]:checked')||{}).value;
+  toggleSub(root,'sub_cram', cramAttend === '是');
+
+  const familyCase = (root.querySelector('input[name=familyCase]:checked')||{}).value;
+  toggleSub(root,'sub_family', familyCase === '是');
+
+  const abroad = (root.querySelector('input[name=abroad]:checked')||{}).value;
+  toggleSub(root,'sub_abroad', abroad === '是');
+
+  const fluVax = (root.querySelector('input[name=fluVax]:checked')||{}).value;
+  toggleSub(root,'sub_flu_vax', fluVax === '是');
+  const covidVax = (root.querySelector('input[name=covidVax]:checked')||{}).value;
+  toggleSub(root,'sub_covid_vax', covidVax === '是');
+
+  const sentHome = root.querySelector('input[data-f=sent_home]');
+  toggleSub(root,'sub_sent_home', !!(sentHome&&sentHome.checked));
+  const leaveHome = root.querySelector('input[data-f=leave_home]');
+  toggleSub(root,'sub_leave_home', !!(leaveHome&&leaveHome.checked));
+}
+function toggleSub(root, id, show, inline){
+  const elx = root.querySelector('#'+id);
+  if(!elx) return;
+  if(inline){ elx.style.display = show ? 'flex' : 'none'; }
+  else{ elx.classList.toggle('show', !!show); }
+}
+
+function bindConditionalEvents(root){
+  root.addEventListener('change', (e)=>{
+    const pk = e.target && e.target.getAttribute ? e.target.getAttribute('data-picker') : null;
+    if(pk) syncAllDatePickers(root, pk);
+    updateConditionals(root);
+  });
+}
+
+function validateRequired(root){
+  const name = root.querySelector('input[data-f=name]');
+  const idNumber = root.querySelector('input[data-f=idNumber]');
+  if(!name.value.trim()) { name.focus(); return '請填寫姓名'; }
+  if(!idNumber.value.trim()) { idNumber.focus(); return '請填寫身分證字號'; }
+  return null;
+}
+
+/* ============================= 畫面切換 ============================= */
+function setScreen(html){
+  $('#screen').innerHTML = html;
+  window.scrollTo({top:0, behavior:'smooth'});
+}
+function checkSetup(){
+  $('#setupNotice').innerHTML = '';
+}
+
+function goHome(){
+  teacherToken = null;
+  teacherMustChangePw = false;
+  cachedTeacherRecords = [];
+  teacherFullCache = {};
+  renderHome();
+}
+
+function renderHome(){
+  setScreen(`
+    <div class="home-grid">
+            <div class="role-card parent" onclick="renderParentLookup()">
+        <div class="icon">👨‍👩‍👧</div>
+        <h2>家長填報</h2>
+        <p>以孩子的身分證字號查詢名下全部通報單（每筆通報後 24 小時內可編修，舊案鎖定後仍可新增通報）</p>
+        <button class="btn btn-primary btn-block">開始填報</button>
+      </div>
+      <div class="role-card teacher" onclick="renderTeacherLogin()">
+        <div class="icon">🏫</div>
+        <h2>老師管理</h2>
+        <p>密碼登入後可查閱、編修全部通報紀錄，並匯出列印用 PDF</p>
+        <button class="btn btn-secondary btn-block">老師登入</button>
+      </div>
+    </div>
+  `);
+}
+
+/* ---------------------------- 家長流程 ---------------------------- */
+function renderParentLookup(){
+  setScreen(`
+    <button class="back-link" onclick="renderHome()">‹ 返回首頁</button>
+    <div class="card">
+            <h2 style="margin-bottom:6px;">家長填報查詢</h2>
+      <p class="hint" style="margin-bottom:16px;">請輸入孩子的身分證字號，查詢名下全部通報紀錄，可新增通報或在 24 小時內編修舊案。<br>每筆通報後 <b>24 小時內</b>可編修，逾期鎖定為唯讀；舊案鎖定不影響新案通報。如需更正舊案請聯繫導師或衛生組。</p>
+      <div class="field required"><label>身分證字號</label><input type="text" id="lookupId" maxlength="10" placeholder="請輸入身分證字號"></div>
+      <div id="lookupMsg"></div>
+      <div class="btn-row">
+        <button class="btn btn-primary" onclick="doParentLookup()">查詢 / 開始填報</button>
+      </div>
+    </div>
+  `);
+}
+
+let cachedParentIdNumber = '';
+let cachedParentRecords = [];
+let currentParentRowId = null; // 家長編修舊案時為該筆 rowId；新增通報時為 null
+
+async function doParentLookup(){
+  const idNumber = $('#lookupId').value.trim();
+  const msg = $('#lookupMsg');
+  if(!idNumber){ msg.innerHTML = `<div class="notice error">請輸入身分證字號</div>`; return; }
+  msg.innerHTML = `<div class="notice info">查詢中…</div>`;
+  try{
+    const resp = await callApi('getByIdNumber', {idNumber});
+    if(!resp.success){ msg.innerHTML = `<div class="notice error">${esc(resp.message||'查詢失敗')}</div>`; return; }
+    cachedParentIdNumber = idNumber;
+    cachedParentRecords = resp.found ? (resp.records || (resp.record ? [Object.assign({editable: resp.editable, expiresAt: resp.expiresAt}, resp.record)] : [])) : [];
+    renderParentHistory();
+  }catch(err){
+    msg.innerHTML = `<div class="notice error">${esc(serverErrMsg(err))}</div>`;
+  }
+}
+
+function parentDiagSummary(d){
+  d = d || {};
+  const arr = Array.isArray(d.diagnosis) ? d.diagnosis : [];
+  if(!arr.length) return '（尚未填寫診斷）';
+  return arr.map(diagLabel).join('、');
+}
+
+function renderParentHistory(){
+  const idNumber = cachedParentIdNumber;
+  const list = cachedParentRecords;
+  const rows = list.map(r=>{
+    const editable = r.editable !== false;
+    const status = editable
+      ? `<span style="color:var(--sky-600);font-weight:700;">可編修（${esc(formatRemaining(r.expiresAt))}）</span>`
+      : `<span style="color:var(--muted);">已鎖定（唯讀）</span>`;
+    return `
+    <div class="report-row">
+      <div class="who">
+        <b>${esc(r.name||'（未填姓名）')}　<span style="font-weight:400;color:var(--muted);">${esc(r.classInfo||'')}</span></b>
+        <span>通報時間：${esc(formatDateTime(r.updatedAt))}｜${esc(parentDiagSummary(r.data))}｜${status}</span>
+      </div>
+      <div class="actions">
+        ${editable
+          ? `<button class="btn btn-secondary" onclick="openParentEdit('${r.rowId}')">查看／編修</button>`
+          : `<button class="btn btn-ghost" onclick="openParentView('${r.rowId}')">查看</button>`}
+      </div>
+    </div>`;
+  }).join('');
+  setScreen(`
+    <button class="back-link" onclick="renderParentLookup()">‹ 返回查詢</button>
+    <div class="card">
+      <h2 style="margin-bottom:6px;">通報紀錄（${esc(idNumber)}）</h2>
+      <p class="hint" style="margin-bottom:14px;">舊案超過 24 小時會鎖定為唯讀，但可隨時按「新增通報」建立新案；管理（老師）不受時間限制。</p>
+      <div class="btn-row" style="margin-bottom:12px;">
+        <button class="btn btn-primary" onclick="openParentNew()">＋ 新增通報</button>
+      </div>
+      ${list.length ? `<div class="report-list">${rows}</div>` : `<div class="empty-state">尚無通報紀錄，請按「新增通報」填寫。</div>`}
+    </div>
+  `);
+}
+
+function openParentNew(){
+  currentParentRowId = null;
+  renderParentForm(cachedParentIdNumber, {idNumber: cachedParentIdNumber}, 'new', {editable: true});
+}
+
+function openParentEdit(rowId){
+  const r = cachedParentRecords.find(x=>x.rowId===rowId);
+  if(!r) return;
+  if(r.editable === false){
+    openParentView(rowId);
+    return;
+  }
+  currentParentRowId = rowId;
+  renderParentForm(cachedParentIdNumber, r.data, 'edit', {
+    editable: true, rowId,
+    expiresAt: r.expiresAt, updatedAt: r.updatedAt
+  });
+}
+
+function openParentView(rowId){
+  const r = cachedParentRecords.find(x=>x.rowId===rowId);
+  if(!r) return;
+  currentParentRowId = rowId;
+  renderParentForm(cachedParentIdNumber, r.data, 'edit', {
+    editable: false, rowId,
+    expiresAt: r.expiresAt, updatedAt: r.updatedAt
+  });
+}
+
+function backToParentHistory(){
+  // 編修/新增後重新查詢以刷新狀態
+  renderParentHistory();
+}
+
+function formatRemaining(expiresAt){
+  if(!expiresAt) return '';
+  const ms = new Date(expiresAt).getTime() - Date.now();
+  if(isNaN(ms) || ms <= 0) return '已逾期';
+  const h = Math.floor(ms / 3600000);
+  const m = Math.floor((ms % 3600000) / 60000);
+  if(h > 0) return `剩餘約 ${h} 小時 ${m} 分`;
+  return `剩餘約 ${m} 分`;
+}
+
+function renderParentForm(idNumber, data, mode, meta){
+  meta = meta || {editable: true};
+  currentEditContext = 'parent';
+  const editable = meta.editable !== false;
+  const isNew = (mode === 'new' || !meta.rowId);
+  const updatedText = meta.updatedAt ? formatDateTime(meta.updatedAt) : '';
+  const remainText = editable && meta.expiresAt ? formatRemaining(meta.expiresAt) : '';
+  const banner = isNew
+    ? `<div class="notice success">建立新通報（舊案鎖定不影響新案）。送出後 24 小時內可編修此筆。第 12 欄由老師填寫，您不需填寫。</div>`
+    : (!editable
+      ? `<div class="notice error">此筆通報已超過 <b>24 小時編修期限</b>（通報時間：${esc(updatedText)}），目前為唯讀。如需更正請聯繫導師或衛生組由管理端處理；您仍可返回上一頁按「新增通報」建立新案。</div>`
+      : `<div class="notice info">編修此筆通報（通報時間：${esc(updatedText)}，${esc(remainText)}）。第 12 欄由老師填寫，不會被您的修改覆蓋。</div>`);
+  setScreen(`
+    <button class="back-link" onclick="backToParentHistory()">‹ 返回通報清單</button>
+    ${banner}
+    <form id="reportForm">${buildFormHTML('parent')}</form>
+    <div class="card" style="position:sticky;bottom:10px;">
+      <div id="parentFormMsg"></div>
+      <div class="btn-row">
+        ${editable
+          ? `<button type="button" class="btn btn-primary btn-block" onclick="submitParentForm()">${isNew ? '送出新通報' : '儲存修改'}</button>`
+          : `<button type="button" class="btn btn-block" disabled>已超過編修期限（唯讀）</button>`}
+      </div>
+    </div>
+  `);
+  const root = $('#reportForm');
+  bindConditionalEvents(root);
+  populateFormData(root, Object.assign({idNumber}, data||{}));
+  root.querySelector('input[data-f=idNumber]').value = idNumber;
+  root.querySelector('input[data-f=idNumber]').readOnly = true;
+  if(!editable){
+    $all('input, textarea, select', root).forEach(elx=>{ elx.disabled = true; });
+  }
+}
+
+async function submitParentForm(){
+  const root = $('#reportForm');
+  const err = validateRequired(root);
+  const msg = $('#parentFormMsg');
+  if(err){ msg.innerHTML = `<div class="notice error">${esc(err)}</div>`; return; }
+  const data = collectFormData(root);
+  if(currentParentRowId) data._rowId = currentParentRowId;
+  msg.innerHTML = `<div class="notice info">送出中…</div>`;
+    try{
+    const resp = await callApi('submitOrUpdate', data);
+        if(resp.success){
+      const isUpd = resp.mode === 'updated';
+      msg.innerHTML = `<div class="notice success">✅ ${isUpd ? '已儲存修改！' : '已成功送出新通報！'}24 小時內可編修此筆，逾期將鎖定（新案仍可另建）。</div>
+      <div class="btn-row" style="margin-top:10px;"><button class="btn btn-secondary btn-block" onclick="doParentRefresh()">返回通報清單</button></div>`;
+      currentParentRowId = resp.rowId || currentParentRowId;
+      window.scrollTo({top:0, behavior:'smooth'});
+    } else {
+      if(resp.expired){
+        msg.innerHTML = `<div class="notice error">${esc(resp.message||'已超過 24 小時編修期限')}</div>`;
+        $all('input, textarea, select', root).forEach(elx=>{ elx.disabled = true; });
+      } else {
+        msg.innerHTML = `<div class="notice error">${esc(resp.message||'送出失敗，請稍後再試')}</div>`;
+      }
+    }
+  }catch(e){
+    msg.innerHTML = `<div class="notice error">${esc(serverErrMsg(e))}</div>`;
+  }
+}
+
+async function doParentRefresh(){
+  const idNumber = cachedParentIdNumber || '';
+  if(!idNumber){ renderParentHistory(); return; }
+  try{
+    const resp = await callApi('getByIdNumber', {idNumber});
+    if(resp.success && resp.found){
+      cachedParentIdNumber = idNumber;
+      cachedParentRecords = resp.records || [];
+    }
+  }catch(e){ /* 沿用舊快取 */ }
+  renderParentHistory();
+}
+
+/* ---------------------------- 老師流程 ---------------------------- */
+function renderTeacherLogin(){
+  setScreen(`
+    <button class="back-link" onclick="renderHome()">‹ 返回首頁</button>
+    <div class="card" style="max-width:360px;margin:0 auto;">
+      <h2 style="margin-bottom:6px;">老師登入</h2>
+      <p class="hint" style="margin-bottom:14px;">請輸入管理密碼以查閱與編修全校通報紀錄。初次使用預設密碼為 <b>admin123</b>，登入後請立即修改。</p>
+      <div class="field required"><label>密碼</label><input type="password" id="teacherPw" autocomplete="current-password" placeholder="請輸入密碼"></div>
+      <div id="loginMsg"></div>
+      <div class="btn-row"><button class="btn btn-secondary btn-block" onclick="doTeacherLogin()">登入</button></div>
+    </div>
+  `);
+  $('#teacherPw').addEventListener('keydown', e=>{ if(e.key==='Enter') doTeacherLogin(); });
+}
+
+async function doTeacherLogin(){
+  const pw = $('#teacherPw').value;
+  const msg = $('#loginMsg');
+  msg.innerHTML = `<div class="notice info">登入中…</div>`;
+  try{
+    const resp = await callApi('teacherLogin', {password: pw});
+    if(resp.success){
+      teacherToken = resp.token;
+      teacherMustChangePw = !!resp.mustChangePassword;
+      $('#teacherPw').value = '';
+      renderTeacherDashboard();
+    } else {
+      msg.innerHTML = `<div class="notice error">${esc(resp.message||'密碼錯誤')}</div>`;
+    }
+  }catch(e){
+    msg.innerHTML = `<div class="notice error">${esc(serverErrMsg(e))}</div>`;
+  }
+}
+
+async function renderTeacherDashboard(){
+  setScreen(`
+    <button class="back-link" onclick="renderHome()">‹ 返回首頁</button>
+    <div id="defaultPwWarn"></div>
+    <div class="card">
+      <div style="display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:10px;">
+        <h2>通報紀錄總覽</h2>
+        <button class="btn btn-ghost" onclick="goHome()">登出</button>
+      </div>
+      <p class="hint" style="margin:8px 0 0;">管理不受 24 小時限制，可隨時編修／刪除所有紀錄。</p>
+      <div class="search-bar" style="margin-top:14px;">
+        <input type="text" id="teacherSearch" placeholder="搜尋姓名／身分證字號／班級">
+        <button class="btn btn-secondary" onclick="loadTeacherRecords()">重新整理</button>
+      </div>
+      <div id="teacherListArea"><div class="notice info">載入中…</div></div>
+    </div>
+    <div class="card" id="adminCard">
+      <h2 style="margin-bottom:6px;">⚙️ 系統管理</h2>
+      <p class="hint" style="margin-bottom:14px;">修改網頁標題與管理密碼。密碼以加鹽雜湊存放在試算表 Settings 工作表，不存明文。</p>
+      <div id="adminMsg"></div>
+      <div class="field"><label>學校名稱</label><input type="text" id="adminSchoolName" maxlength="40" placeholder="例：高雄市市立福山國中"></div>
+      <div class="field"><label>網頁標題</label><input type="text" id="adminSiteTitle" maxlength="40" placeholder="例：傳染病通報單線上系統"></div>
+      <div class="btn-row"><button class="btn btn-secondary" onclick="saveSiteSettings()">儲存標題</button></div>
+      <hr style="border:none;border-top:1px solid var(--line);margin:18px 0;">
+      <div id="pwdStatus" class="hint" style="margin-bottom:10px;"></div>
+      <div class="field"><label>舊密碼</label><input type="password" id="oldPw" autocomplete="current-password" placeholder="請輸入舊密碼"></div>
+      <div class="row">
+        <div class="field"><label>新密碼（至少8碼，含英數）</label><input type="password" id="newPw" autocomplete="new-password" placeholder="新密碼"></div>
+        <div class="field"><label>確認新密碼</label><input type="password" id="confirmPw" autocomplete="new-password" placeholder="再輸入一次"></div>
+      </div>
+      <div id="pwdMsg"></div>
+      <div class="btn-row"><button class="btn btn-primary" onclick="submitChangePassword()">修改密碼</button></div>
+    </div>
+  `);
+  $('#teacherSearch').addEventListener('input', renderTeacherList);
+  await loadTeacherRecords();
+  await loadAdminSettings();
+}
+
+/* ---------------------------- 系統管理：標題＋密碼 ---------------------------- */
+async function loadAdminSettings(){
+  const msg = $('#adminMsg');
+  try{
+    const resp = await callApi('getAdminSettings', {token: teacherToken});
+    if(!resp.success){
+      if(msg) msg.innerHTML = `<div class="notice error">${esc(resp.message||'讀取管理設定失敗')}</div>`;
+      return;
+    }
+    $('#adminSchoolName').value = resp.schoolName || '';
+    $('#adminSiteTitle').value = resp.siteTitle || '';
+    applySiteSettings(resp);
+    const warn = $('#defaultPwWarn');
+    if(warn) warn.innerHTML = (resp.isDefaultPassword || teacherMustChangePw)
+      ? `<div class="notice error">⚠️ 目前仍使用預設密碼 admin123，請立即修改以確保安全。</div>` : '';
+    const st = $('#pwdStatus');
+    if(st){
+      const t = resp.pwdUpdatedAt ? formatDateTime(resp.pwdUpdatedAt) : '未知';
+      st.textContent = '密碼狀態：' + (resp.isDefaultPassword ? '預設密碼（尚未修改）' : '已修改，最近更新：' + t);
+    }
+  }catch(e){
+    if(msg) msg.innerHTML = `<div class="notice error">${esc(serverErrMsg(e))}</div>`;
+  }
+}
+
+async function saveSiteSettings(){
+  const msg = $('#adminMsg');
+  const schoolName = $('#adminSchoolName').value.trim();
+  const siteTitle = $('#adminSiteTitle').value.trim();
+  msg.innerHTML = `<div class="notice info">儲存中…</div>`;
+  try{
+    const resp = await callApi('updateSiteSettings', {token: teacherToken, schoolName, siteTitle});
+    if(resp.success){
+      applySiteSettings(resp);
+      msg.innerHTML = `<div class="notice success">✅ 已更新網站標題</div>`;
+    } else {
+      msg.innerHTML = `<div class="notice error">${esc(resp.message||'儲存失敗')}</div>`;
+    }
+  }catch(e){
+    msg.innerHTML = `<div class="notice error">${esc(serverErrMsg(e))}</div>`;
+  }
+}
+
+async function submitChangePassword(){
+  const msg = $('#pwdMsg');
+  const oldPassword = $('#oldPw').value;
+  const newPassword = $('#newPw').value;
+  const confirmPassword = $('#confirmPw').value;
+  if(!oldPassword || !newPassword || !confirmPassword){
+    msg.innerHTML = `<div class="notice error">請完整填寫舊密碼、新密碼與確認密碼</div>`;
+    return;
+  }
+  if(newPassword !== confirmPassword){
+    msg.innerHTML = `<div class="notice error">兩次輸入的新密碼不一致</div>`;
+    return;
+  }
+  msg.innerHTML = `<div class="notice info">修改中…</div>`;
+  try{
+    const resp = await callApi('changePassword', {token: teacherToken, oldPassword, newPassword, confirmPassword});
+    if(resp.success){
+      teacherMustChangePw = false;
+      $('#oldPw').value = ''; $('#newPw').value = ''; $('#confirmPw').value = '';
+      msg.innerHTML = `<div class="notice success">✅ 密碼已修改，請牢記新密碼</div>`;
+      await loadAdminSettings();
+    } else {
+      msg.innerHTML = `<div class="notice error">${esc(resp.message||'修改失敗')}</div>`;
+    }
+  }catch(e){
+    msg.innerHTML = `<div class="notice error">${esc(serverErrMsg(e))}</div>`;
+  }
+}
+
+async function loadTeacherRecords(){
+  const area = $('#teacherListArea');
+  if(!area) return; // 不在總覽頁時直接略過（例如編修頁存檔後不需要重載列表）
+  area.innerHTML = `<div class="notice info">載入中…</div>`;
+  try{
+    const resp = await callApi('listAll', {token: teacherToken});
+    if(!resp){
+      area.innerHTML = `<div class="notice error">後端回傳空值，請確認 Apps Script 已用「新版本」部署（Code.gs 與 index.html 皆為最新），並重新整理後再試。</div>`;
+      return;
+    }
+    if(!resp.success){
+      area.innerHTML = `<div class="notice error">${esc(resp.message||'讀取失敗，請重新登入')}</div>`;
+      return;
+    }
+    cachedTeacherRecords = resp.records || [];
+    teacherFullCache = {};
+    renderTeacherList();
+  }catch(e){
+    area.innerHTML = `<div class="notice error">${esc(serverErrMsg(e, '連線失敗，請確認網路連線或稍後再試。'))}<br><span class="hint">除錯提示：請確認 Apps Script「部署 → 管理部署作業」已用新版本部署，且 Code.gs 與 index.html 皆已更新；或直接開啟 /exec 網址測試。</span></div>`;
+  }
+}
+
+function renderTeacherList(){
+  const area = $('#teacherListArea');
+  const q = ($('#teacherSearch').value||'').trim().toLowerCase();
+  const filtered = cachedTeacherRecords.filter(r=>{
+    if(!q) return true;
+    return (r.name||'').toLowerCase().includes(q) ||
+           (r.idNumber||'').toLowerCase().includes(q) ||
+           (r.classInfo||'').toLowerCase().includes(q);
+  });
+  if(filtered.length===0){
+    area.innerHTML = `<div class="empty-state">目前沒有符合的通報紀錄</div>`;
+    return;
+  }
+  area.innerHTML = `<div class="report-list">${filtered.map(r=>`
+    <div class="report-row">
+      <div class="who">
+        <b>${esc(r.name||'（未填姓名）')}　<span style="font-weight:400;color:var(--muted);">${esc(r.classInfo||'')}</span></b>
+        <span>身分證字號：${esc(r.idNumber||'')}｜更新時間：${esc(formatDateTime(r.updatedAt))}</span>
+      </div>
+      <div class="actions">
+        <button class="btn btn-secondary" onclick="openTeacherEdit('${r.rowId}')">查看／編修</button>
+        <button class="btn btn-ghost" onclick="exportRecordPdf('${r.rowId}')">匯出列印</button>
+        <button class="btn btn-danger" onclick="confirmDeleteRecord('${r.rowId}','${esc(r.name||'')}')">刪除</button>
+      </div>
+    </div>
+  `).join('')}</div>`;
+}
+
+function formatDateTime(v){
+  if(!v) return '';
+  const d = new Date(v);
+  if(isNaN(d.getTime())) return String(v);
+  const p = n=>String(n).padStart(2,'0');
+  return `${d.getFullYear()}/${p(d.getMonth()+1)}/${p(d.getDate())} ${p(d.getHours())}:${p(d.getMinutes())}`;
+}
+
+/* 依 rowId 取得單筆完整通報（列表僅為摘要，完整表單按需讀取並快取） */
+async function fetchTeacherFull(rowId){
+  if(teacherFullCache[rowId]) return teacherFullCache[rowId];
+  const resp = await callApi('getByRowId', {token: teacherToken, rowId});
+  if(!resp.success) throw new Error(resp.message || '讀取失敗');
+  teacherFullCache[rowId] = resp.record;
+  return resp.record;
+}
+
+async function openTeacherEdit(rowId){
+  const summary = cachedTeacherRecords.find(r=>r.rowId===rowId);
+  currentEditContext = 'teacher';
+  currentEditRowId = rowId;
+  setScreen(`
+    <button class="back-link" onclick="renderTeacherDashboard()">‹ 返回列表</button>
+    <div id="teacherEditArea"><div class="notice info">讀取通報內容中…</div></div>
+  `);
+  try{
+    const record = await fetchTeacherFull(rowId);
+    setScreen(`
+    <button class="back-link" onclick="renderTeacherDashboard()">‹ 返回列表</button>
+    <div class="notice info">編修：${esc(record.name||'')}（${esc(record.idNumber||'')}）</div>
+    <form id="reportForm">${buildFormHTML('teacher')}</form>
+    <div class="card" style="position:sticky;bottom:10px;">
+      <div id="teacherFormMsg"></div>
+      <div class="btn-row">
+        <button type="button" class="btn btn-primary" onclick="saveTeacherEdit()">儲存修改</button>
+        <button type="button" class="btn btn-secondary" onclick="exportRecordPdf('${rowId}')">匯出列印用 PDF</button>
+        <button type="button" class="btn btn-ghost" onclick="renderTeacherDashboard()">取消</button>
+      </div>
+    </div>
+  `);
+    const root = $('#reportForm');
+    bindConditionalEvents(root);
+    populateFormData(root, record.data);
+    root.querySelector('input[data-f=idNumber]').readOnly = false;
+  }catch(e){
+    const who = summary ? `${summary.name||''}（${summary.idNumber||''}）` : rowId;
+    setScreen(`
+    <button class="back-link" onclick="renderTeacherDashboard()">‹ 返回列表</button>
+    <div class="notice error">讀取「${esc(who)}」的通報內容失敗：${esc(serverErrMsg(e))}</div>
+  `);
+  }
+}
+
+async function saveTeacherEdit(){
+  const root = $('#reportForm');
+  const err = validateRequired(root);
+  const msg = $('#teacherFormMsg');
+  if(err){ msg.innerHTML = `<div class="notice error">${esc(err)}</div>`; return; }
+  const data = collectFormData(root);
+  msg.innerHTML = `<div class="notice info">儲存中…</div>`;
+  try{
+    const resp = await callApi('teacherUpdate', {token: teacherToken, rowId: currentEditRowId, data});
+    if(resp.success){
+      msg.innerHTML = `<div class="notice success">✅ 已儲存修改</div>
+      <div class="btn-row" style="margin-top:10px;"><button class="btn btn-secondary btn-block" onclick="renderTeacherDashboard()">返回列表</button></div>`;
+      delete teacherFullCache[currentEditRowId];
+      // 不在此呼叫 loadTeacherRecords（總覽頁元素不存在）；返回列表時會自動重載
+    } else {
+      msg.innerHTML = `<div class="notice error">${esc(resp.message||'儲存失敗')}</div>`;
+    }
+  }catch(e){
+    msg.innerHTML = `<div class="notice error">${esc(serverErrMsg(e))}</div>`;
+  }
+}
+
+function confirmDeleteRecord(rowId, name){
+  showConfirm('刪除通報紀錄', `確定要刪除「${name}」的通報紀錄嗎？此動作無法復原。`, async ()=>{
+    try{
+      const resp = await callApi('teacherDelete', {token: teacherToken, rowId});
+      if(resp.success){ await loadTeacherRecords(); }
+      else { alert(resp.message || '刪除失敗'); }
+    }catch(e){ alert('連線失敗，請稍後再試'); }
+  });
+}
+
+/* ============================= 匯出列印 / PDF ============================= */
+function diagLabel(v){
+  const map = {covid19:'新冠肺炎', flu:'A型/B型流感', flu_like:'類流感', dengue:'登革熱', enterovirus:'腸病毒',
+    mumps:'腮腺炎', chickenpox:'水痘', viral_gastro:'病毒性腸胃炎（諾羅、輪狀病毒等）', pink_eye:'紅眼症', other:'其他'};
+  return map[v]||v;
+}
+function symLabel(v){
+  const map = {fever:'發燒',cough:'咳嗽',myalgia:'肌肉酸痛',headache:'頭痛',dizziness:'頭暈',sore_throat:'喉嚨痛',
+    diarrhea:'腹瀉',abdominal_pain:'腹痛',smell_loss:'嗅覺異常',taste_loss:'味覺異常',conjunctivitis:'結膜炎',other:'其他'};
+  return map[v]||v;
+}
+function famDiseaseLabel(v){
+  const map = {covid19:'新冠',flu_a:'A流',flu_b:'B流',dengue:'登革熱',enterovirus:'腸病毒',mumps:'腮腺炎',chickenpox:'水痘',other:'其他'};
+  return map[v]||v;
+}
+function roc(d, key){ return `${d[key+'_y']||''} 年 ${d[key+'_m']||''} 月 ${d[key+'_d']||''} 日`; }
+function md(d, key){ return `${d[key+'_m']||''} 月 ${d[key+'_d']||''} 日`; }
+function chk(cond){ return cond ? '☑' : '☐'; }
+function inList(arr, v){ return Array.isArray(arr) && arr.includes(v); }
+
+async function exportRecordPdf(rowId){
+  try{
+    const record = await fetchTeacherFull(rowId);
+    buildPrintView(record.data);
+    window.print();
+  }catch(e){
+    alert(serverErrMsg(e, '讀取通報內容失敗'));
+  }
+}
+
+function buildPrintView(d){
+  d = d || {};
+  const diagList = Array.isArray(d.diagnosis)?d.diagnosis:[];
+  const symList = Array.isArray(d.symptoms)?d.symptoms:[];
+  const famDisList = Array.isArray(d.family_disease)?d.family_disease:[];
+  const medList = Array.isArray(d.med)?d.med:[];
+
+    const F = function(v, c){ return '<span class="fill '+(c||'')+'">'+esc(v||'')+'</span>'; };
+  const R3 = function(key){ return F(d[key+'_y'],'mid')+'年'+F(d[key+'_m'],'short')+'月'+F(d[key+'_d'],'short')+'日'; };
+  const M2 = function(key){ return F(d[key+'_m'],'short')+'月'+F(d[key+'_d'],'short')+'日'; };
+  const hasCovid = inList(diagList,'covid19');
+  const hasFlu = inList(diagList,'flu');
+  const medCovid = inList(medList,'covid');
+  const medFlu = inList(medList,'flu');
+  const famRows = [1,2,3].map(function(i){
+    return '('+i+')關係：'+F(d['fam'+i+'_relation'],'mid')+'；姓名：'+F(d['fam'+i+'_name'],'mid')+'；學校：'+F(d['fam'+i+'_school'])+'；班級：'+F(d['fam'+i+'_year'],'short')+'年'+F(d['fam'+i+'_class'],'short')+'班';
+  }).join('<br>');
+  const notesRow = (d.notes && String(d.notes).trim())
+    ? '<tr><td class="pnum">※</td><td colspan="3">填表備註：'+esc(d.notes)+'</td></tr>' : '';
+
+  const html = `
+  <div class="paper">
+  <div class="paper-title">高雄市市立福山國中傳染病通報單 <span class="ver">中華民國114年8月4日擴大行政會報核定增修版</span></div>
+  <div class="paper-proc">※通報程序：<br>1.發現病例，應於24小時內填寫傳染病通報單。<br>2.至學務處衛生組領取「通報單」→導師向家長確認並填寫「通報單」→交回衛生組長（影印3份、正本留存）→（1）影本送生教組長進行校安通報→（2）影本送健康中心護理師通報→（3）影本送午餐幹事確認學生停餐之日期<br>3.若請假有延誤段考，請向教務處教學組幹事洽詢。</div>
+  <table class="paper-table">
+    <tr>
+      <td colspan="4"><div class="half-row"><div>姓名：${F(d.name,'wide')}<br>身分證號碼：${F(d.idNumber,'wide')}<br>出生日期：民國 ${R3('birth')}</div><div>性別：${chk(d.gender==='男')}男　${chk(d.gender==='女')}女<br>身分：${chk(d.identity==='學生')}學生　${chk(d.identity==='教職員工')}教職員工（處室：${F(d.identityOffice)}）<br>班級/座號/總人數：${F(d.classNumber,'short')}/${F(d.seatNumber,'short')}/${F(d.classTotal,'short')}</div></div></td>
+    </tr>
+    <tr>
+      <td colspan="3">住址：${F(d.address,'wide')}</td>
+      <td>電話：${F(d.phone,'wide')}</td>
+    </tr>
+        <tr><td rowspan="5" class="pnum">1</td><td rowspan="5" class="psec">就醫<br>情形</td><td colspan="2">(1)診斷：${chk(hasCovid)}新冠肺炎：1.${chk(hasCovid&&d.covid_type==='self_rapid')}自行快篩陽性　2.${chk(hasCovid&&d.covid_type==='doctor_rapid')}醫師快篩診斷陽性<br>${chk(hasFlu&&d.flu_strain==='A')}A型流感　或　${chk(hasFlu&&d.flu_strain==='B')}B型流感：1.${chk(hasFlu&&d.flu_confirm==='tested')}醫師篩檢確診　2.${chk(hasFlu&&d.flu_confirm==='clinical')}醫師未篩判斷確診<br>${chk(inList(diagList,'flu_like'))}類流感　${chk(inList(diagList,'dengue'))}登革熱　${chk(inList(diagList,'enterovirus'))}腸病毒　${chk(inList(diagList,'mumps'))}腮腺炎　${chk(inList(diagList,'chickenpox'))}水痘<br>${chk(inList(diagList,'viral_gastro'))}病毒性腸胃炎（諾羅、輪狀病毒等）　${chk(inList(diagList,'pink_eye'))}紅眼症　${chk(inList(diagList,'other'))}其他${F(d.diagnosis_other)}</td></tr>
+    <tr><td colspan="2">(2)確診日期：${R3('confirm')}　${chk(d.confirm_tod==='早上')}早上　${chk(d.confirm_tod==='下午')}下午　${chk(d.confirm_tod==='晚上')}晚上</td></tr>
+    <tr><td colspan="2">(3)發病日期：${R3('onset')}（過去病史：${F(d.past_history,'wide')}）</td></tr>
+    <tr><td colspan="2">(4)就醫日期、醫療院所：${R3('visit1')}　${F(d.visit1_hospital)}醫院/診所</td></tr>
+    <tr><td colspan="2">(5)就醫日期、醫療院所：${R3('visit2')}　${F(d.visit2_hospital)}醫院/診所</td></tr>
+
+    <tr><td rowspan="2" class="pnum">2</td><td rowspan="2" class="psec">診治<br>情形</td><td colspan="2">投藥：${chk(medCovid)}服用新冠肺炎抗病毒藥劑：${chk(medCovid&&d.fund_covid==='公費')}公費　或　${chk(medCovid&&d.fund_covid==='自費')}自費<br>${chk(medFlu)}服用流感抗病毒藥劑（如克流感…）：${chk(medFlu&&d.fund_flu==='公費')}公費　或　${chk(medFlu&&d.fund_flu==='自費')}自費<br>${chk(inList(medList,'symptomatic'))}症狀治療藥物　其他：${F(d.med_other)}</td></tr>
+    <tr><td colspan="2">療養：${chk(d.care_type==='居家')}居家　${chk(d.care_type==='住院醫療')}住院醫療：${F(d.care_hospital)}醫院</td></tr>
+
+        <tr><td class="pnum">3</td><td colspan="3">就讀補習班、安親班？${chk(d.cram_attend==='否')}否；${chk(d.cram_attend==='是')}是：${F(d.cram_area,'short')}區，機構名稱：${F(d.cram_name,'wide')}<br>上課科別：${F(d.cram_subject,'wide')}，時間：${chk(d.cram_freq==='每天')}每天/${chk(d.cram_freq==='每週星期幾')}每週星期幾：${F(d.cram_days)}</td></tr>
+    <tr><td class="pnum">4</td><td colspan="3">參加學校社團名稱：${F(d.club_name,'wide')}</td></tr>
+
+    <tr><td class="pnum">5.</td><td class="psec">同住家人是否有其他病例？</td><td colspan="2">${chk(d.family_case==='否')}否<br>${chk(d.family_case==='是')}是：與個案關係：${F(d.family_relation)}，確診總人數：${F(d.family_confirmed_count,'short')}，確診疾病：<br>${chk(inList(famDisList,'covid19'))}新冠　${chk(inList(famDisList,'flu_a'))}A流　${chk(inList(famDisList,'flu_b'))}B流　${chk(inList(famDisList,'dengue'))}登革熱　${chk(inList(famDisList,'enterovirus'))}腸病毒　${chk(inList(famDisList,'mumps'))}腮腺炎　${chk(inList(famDisList,'chickenpox'))}水痘　${chk(inList(famDisList,'other'))}其他${F(d.family_disease_other)}</td></tr>
+
+    <tr><td class="pnum">6</td><td colspan="3">同住家人就學中資料：（無則免填）<br>${famRows}</td></tr>
+
+    <tr><td class="pnum">7</td><td colspan="3">二週內是否出國？${chk(d.abroad==='否')}否　${chk(d.abroad==='是')}是，時間：${M2('abroad_start')}～${M2('abroad_end')}，地點：${F(d.abroad_location,'wide')}</td></tr>
+
+    <tr><td class="pnum">8</td><td colspan="3">發病症狀：${chk(inList(symList,'fever'))}發燒　${chk(inList(symList,'cough'))}咳嗽　${chk(inList(symList,'myalgia'))}肌肉酸痛　${chk(inList(symList,'headache'))}頭痛　${chk(inList(symList,'dizziness'))}頭暈　${chk(inList(symList,'sore_throat'))}喉嚨痛　${chk(inList(symList,'diarrhea'))}腹瀉<br>${chk(inList(symList,'abdominal_pain'))}腹痛　${chk(inList(symList,'smell_loss'))}嗅覺異常　${chk(inList(symList,'taste_loss'))}味覺異常　${chk(inList(symList,'conjunctivitis'))}結膜炎　${chk(inList(symList,'other'))}其他${F(d.symptoms_other)}</td></tr>
+
+    <tr><td class="pnum">9</td><td colspan="3">近一年內是否打過流感疫苗？${chk(d.flu_vaccine==='否')}否　${chk(d.flu_vaccine==='是')}是，日期：${R3('flu_vaccine')}<br>近一年內是否打過新冠肺炎疫苗？${chk(d.covid_vaccine==='否')}否　${chk(d.covid_vaccine==='是')}是，日期：${R3('covid_vaccine')}</td></tr>
+
+    <tr><td class="pnum">10</td><td colspan="3">
+      ${chk(!!(d.sent_home&&d.sent_home[0]))}到校後發病、發燒或不適，由家屬帶回就醫。時間：${M2('sent_home')}第${F(d.sent_home_period,'short')}節帶回。<br>
+      ${chk(!!(d.leave_home&&d.leave_home[0]))}發病後就請假在家未到校。自${F(d.leave_start_m,'short')}月${F(d.leave_start_d,'short')}日起開始請假在家療養。
+    </td></tr>
+
+    <tr><td class="pnum">11</td><td colspan="3">是否已領取午餐退費申請表：${chk(d.lunch_refund==='是')}是　${chk(d.lunch_refund==='否')}否（午餐退費，以通報日隔天算起，連續停餐3天（含）以上可退費）</td></tr>
+
+    <tr><td class="pnum">12</td><td colspan="3"><div class="half-row"><div>導師或填表人簽名：<br>${F(d.signer)}</div><div>家長通報日期/時間：${R3('parent_report')}時間：${F(d.parent_report_time,'short')}<br>導師通報日期/時間：${R3('teacher_report')}時間：${F(d.teacher_report_time,'short')}</div></div></td></tr>
+
+    ${notesRow}
+  </table>
+  <div class="paper-note">備註：<br>1.若遇非上班時間，請導師先知會衛生組或健康中心，待上班日再補送紙本通報單。<br>2.表單內容依衛生局、所疫情調查需要制定，滾動式修正。<br>3.若有欄位不足或特殊需記載事項導師可記錄於本通報單背面，謝謝您！</div>
+  </div>
+  `;
+  $('#printRoot').innerHTML = html;
+}
+
+window.addEventListener('afterprint', ()=>{ $('#printRoot').innerHTML=''; });
+
+/* ============================= 啟動 ============================= */
+checkSetup();
+renderHome();
+loadPublicSettings();
+</script>
+</body>
+</html>
