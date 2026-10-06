@@ -1,0 +1,14 @@
+# Netlify 部署設定（福山國中傳染病通報單線上系統）
+# - 發佈範圍限定為前端 index.html，後端 Code.gs / 說明文件 / 參考圖 / site/ 版皆不發佈
+# - 手動 Drop 部署：直接拖曳根目錄 index.html，本檔僅供 Git 連動部署使用
+
+[build]
+  command = "mkdir -p publish && cp index.html publish/index.html"
+  publish = "publish"
+
+[[headers]]
+  for = "/*"
+  [headers.values]
+    X-Frame-Options = "SAMEORIGIN"
+    X-Content-Type-Options = "nosniff"
+    Referrer-Policy = "strict-origin-when-cross-origin"
