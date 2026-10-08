@@ -1,0 +1,12 @@
+# 福山國中傳染病通報單 — API Worker（Cloudflare Workers＋D1）
+# 後端 API：POST {action, payload}，11 個動作與 Google 版 site/Code.gs 完全對應
+# 前端 D1/web/index.html 的 API_URL 指到本 Worker 的 workers.dev 網址
+
+name = "fushan-report-api"
+main = "worker.js"
+compatibility_date = "2025-01-01"
+
+[[d1_databases]]
+binding = "DB"
+database_name = "fushan-disease-report"
+database_id = "4e644582-00fa-4f6e-9619-32676f3953c2"

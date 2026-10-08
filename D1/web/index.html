@@ -247,11 +247,11 @@
 
 <script>
 /* =========================================================================
-   Netlify 版：前端為靜態站，經 fetch POST 呼叫 Google Apps Script 後端。
-   後端與 Google Sites 版共用同一支 site/Code.gs（doPost action 介面一致）。
-   若更換後端部署，請更新下方 GAS_URL（結尾為 /exec）。
+   D1 版：前端為靜態站，經 fetch POST 呼叫 Cloudflare Worker 後端（D1 資料庫）。
+   協定與 Google 版一致（{action, payload}），後端見 D1/worker.js。
+   若更換後端部署，請更新下方 GAS_URL（D1 版指向 Worker 的 workers.dev 網址）。
    ========================================================================= */
-const GAS_URL = "https://script.google.com/macros/s/AKfycby5Fq-2en1tVKW8fnCWAUkOhbdmZNHZU89QxvGdkPyiL_5JOzz_bdH6IbP-i_XDQVTq/exec";
+const GAS_URL = "https://fushan-report-api.shrjie.workers.dev";
 
 /* ============================= 共用小工具 ============================= */
 function $(sel, root){ return (root||document).querySelector(sel); }
